@@ -1,40 +1,31 @@
-> [!NOTE]  
-> Canopy is no longer being developed by Will Heitman for Arbor Robotics and it has been archived.
+# SvelteKit Markdown Blog
 
-# Canopy
-![Screenshot of Canopy](screenshot.png)
+Learn how to build a blazingly fast and extendable SvelteKit Markdown blog for poets.
 
-## Overview
+## Post
 
-Canopy is a web interface used to plan forests and send plans to Steward, a reforestation robot. Canopy was written using SvelteKit, Tailwind, roslibjs, and Bits UI.
+✍️ https://joyofcode.xyz/sveltekit-markdown-blog
 
-## Developing
+## REPL
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/joysofcode/sveltekit-markdown-blog)
 
-```bash
-npm run dev
+## Setup
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
+### 🧑‍🤝‍🧑 Clone the project
+
+```sh
+https://github.com/joysofcode/sveltekit-markdown-blog.git
 ```
 
-## Building
+### 📦️ Install dependencies
 
-To create a production version of your app:
-
-```bash
-npm run build
+```sh
+pnpm i
 ```
 
-You can preview the production build with `npm run preview`.
+### 💿️ Run the development server
 
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
-
-## ROS considerations
-
-### Coordinate conversions
-ROS's map frame uses the ENU convention. That is, **x is east, y is north, z is up**.
-THREE.js's convention is: **x is east, y is up, z is south**.
-
-
+```sh
+pnpm run dev
+```

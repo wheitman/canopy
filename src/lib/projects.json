@@ -1,0 +1,126 @@
+[
+    {
+        "title": "🦾Pick and place in a custom simulator",
+        "description": "Modeled joint dynamics of xArm 6 in EcoSim, my custom Unity-based robotics simulator. Wrote ROS2 package to calculate IK, plan trajectories, and send joint commands to Unity via TCP.",
+        "date": "February 2025",
+        "media": "https://youtu.be/GMjQEAYNPUY"
+    },
+    {
+        "title": "🌲A fully autonomous reforestation robot for the real world",
+        "description": "I managed a 5-person project to design and build a robot that plants trees in deforested areas. We used a Warthog UGV & a custom planting mechanism. I wrote the software, including a full ROS2 stack, custom simulator, a sleek web interface, and assorted firmware.",
+        "date": "November 2024",
+        "media": "https://www.youtube.com/watch?v=r_43qU662SY",
+        "links": [
+            {
+                "title": "Blog post",
+                "url": "/steward"
+            }
+        ]
+    },
+    {
+        "title": "A forest design and robot control tool for the browser",
+        "description": "Canopy can instantly generate forest plans using native species-- simply paint where you want your trees to go. It also communicates with a reforestation robot running ROS2 using websockets. Written with three.js, Svelte, SvelteKit, TypeScript, and bits-ui. It includes an interactive demo that guides new users through the forest design process. Successfully tested in the real world, with real foresters who had zero robotics experience!",
+        "date": "November 2024",
+        "media": "/res/25-03-18-canopy-control.png",
+        "links": [
+            {
+                "title": "Try it",
+                "url": "https://arbor-robotics.github.io/canopy"
+            },
+            {
+                "title": "Source code",
+                "url": "https://github.com/arbor-robotics/canopy"
+            }
+        ]
+    },
+    {
+        "title": "🌱Fast, accurate soil analysis using soil spectroscopy in the browser",
+        "description": "As part of a research fellowship in the USDA's AI Center of Excellence, I developed a SOTA soil analysis tool. It uses a custom-trained ML model to predict physical soil properties from a single VisNIR scan of soil. Tests that take days in a wet lab are finished in less than a second.",
+        "date": "July 2024",
+        "media": "/res/24-08-29-druid-screenshot.jpg",
+        "links": [
+            {
+                "title": "Try it",
+                "url": "https://wheitman.github.io/druid-web/"
+            },
+            {
+                "title": "Blog post",
+                "url": "/2024-08-29-Soil-analysis-in-your-browser"
+            }
+        ]
+    },
+    {
+        "title": "🪴Plant ID in the browser using on-device AI",
+        "description": "I wanted to push the limits of what on-device AI on a smartphone can do. This is a proof of concept of deploying a ResNet-based plant classifier to the browser using Microsoft's ONNX Runtime library. It's fast, accurate, and private.",
+        "date": "June 2024",
+        "media": "/res/24-06-06-druid-screenshot.png",
+        "links": [
+            {
+                "title": "Try it",
+                "url": "https://wheitman.github.io/druid-web/"
+            },
+            {
+                "title": "Blog post",
+                "url": "/2024-06-06-Plant-ID-in-the-browser"
+            }
+        ]
+    },
+    {
+        "title": "🦾Inverse kinematics on a Panda arm",
+        "description": "With my friend Leo, I programmed some inverse kinematics on a Panda manipulator using FrankaPy and MoveIt. The transform tree of the Arm was calibrated using a camera mounted to the robot’s wrist, as well as an Aruco marker on the table.",
+        "date": "February 2024",
+        "media": "https://youtu.be/efBonv9PPC8"
+    },
+    {
+        "title": "🕹️Custom robotics simulator using Unity",
+        "description": "[This simulator has changed a lot since this video.] The above is a tool that I’m developing for my reforestation robot project at CMU. The Unity-based simulator has a complete bridge with ROS2, so sensor data from the simulator can be easily displayed in Rviz, for example. I wrote custom scripts to simulate camera sensors, GNSS, and more. The terrain is based of of real-world elevation data pulled from the USGS’s National Map Downloader. I’ve designed this tool so that virtual worlds can be easily created based on any location in the world— all you need are the GPS coordinates.",
+        "date": "January 2024",
+        "media": "https://youtu.be/MArpx3ldpO0",
+        "links": [
+            {
+                "title": "Source code",
+                "url": "https://github.com/wheitman/ecosim"
+            }
+        ]
+    },
+    {
+        "title": "🌳Forest generation in the browser",
+        "description": "I’m fascinated with teaching computers to have “green thumbs”— modeling plant dynamics, eventually so that machines can help us grow plants better than ever!",
+        "date": "December 2023",
+        "media": "/res/22-03-13-forest-generator.png",
+        "links": [
+            {
+                "title": "Blog post",
+                "url": "/2023-12-26-Forest-generation"
+            },
+            {
+                "title": "Try it",
+                "url": "/apps/forest-generator/index.html"
+            }
+        ]
+    },
+    {
+        "title": "🖼️Scene classification using a retro bag-of-words technique",
+        "description": "Life existed before CNNs! For my CS class at CMU, I wrote a bag-of-words scene classifier. It uses a series of Gaussian and related filters to convert any image into the frequency domain, then uses the filter responses to construct a histogram. These histograms are clustered, forming a classifier. This technique used to be state-of-the-art. My classifier achieved a whopping 61% accuracy after I tuned the spatial pyramid params.",
+        "date": "September 2023",
+        "media": "/res/23-09-14-bag-of-words.png"
+    },
+    {
+        "title": "🚗A self-driving car that drove us to the park",
+        "description": "I founded and led an autonomous driving group called Nova! We built our own self-driving car (custom software and hardware setup). Here’s our car taking us on a picnic.",
+        "date": "May 2023",
+        "media": "https://youtu.be/uHjxz3qC8Q8"
+    },
+    {
+        "title": "📷Map-assisted state estimation with semantic segmentation",
+        "description": "The idea here is that, in the event that the signal from a GNSS sensor is lost, or another localization sensor fails, we can use real-time perception data and offline map information to retain localization in an autonomous vehicle. Does it work as well as RTK? No! But it’s a great fallback, and it uses computations that the AV stack is performing anyway, so it’s a great safety system that can run in the background. And it reduced error from a simulated noisy GPS by 47%!",
+        "date": "December 2022",
+        "media": "https://youtu.be/7S4yEwxbEJs",
+        "links": [
+            {
+                "title": "Blog post",
+                "url": "/2022-04-12-URSA"
+            }
+        ]
+    }
+]
