@@ -34,7 +34,6 @@ declare module '$env/static/private' {
 	export const SHLVL: string;
 	export const LD_LIBRARY_PATH: string;
 	export const npm_config_noproxy: string;
-	export const MOTD_SHOWN: string;
 	export const HOME: string;
 	export const CONDA_SHLVL: string;
 	export const TERM_PROGRAM_VERSION: string;
@@ -142,7 +141,6 @@ declare module '$env/dynamic/private' {
 		SHLVL: string;
 		LD_LIBRARY_PATH: string;
 		npm_config_noproxy: string;
-		MOTD_SHOWN: string;
 		HOME: string;
 		CONDA_SHLVL: string;
 		TERM_PROGRAM_VERSION: string;

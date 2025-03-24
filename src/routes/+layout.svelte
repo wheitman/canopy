@@ -1,9 +1,9 @@
 <script lang="ts">
-	import PageTransition from './transition.svelte'
+	import PageTransition from "./transition.svelte";
 
-	import '../app.css'
+	import "../app.css";
 
-	let { children, data } = $props()
+	let { children, data } = $props();
 </script>
 
 <div class="layout">
@@ -29,6 +29,8 @@
 
 		main {
 			padding-block: var(--size-9);
+			height: 100vh;
+			width: 100vw;
 		}
 	}
 </style>
