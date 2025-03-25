@@ -191,7 +191,7 @@ function Navbar($$payload) {
 }
 function _layout($$payload, $$props) {
   let { children, data } = $$props;
-  $$payload.out += `<div class="layout flex flex-col overflow-hidden svelte-q0zhp8"><main class="overflow-auto svelte-q0zhp8">`;
+  $$payload.out += `<div class="layout flex flex-col overflow-hidden svelte-15yw0yw"><main class="overflow-auto svelte-15yw0yw">`;
   children?.($$payload);
   $$payload.out += `<!----></main> `;
   Navbar($$payload);
