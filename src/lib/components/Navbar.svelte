@@ -1,32 +1,26 @@
 <script>
-    import { Brush, Shovel, Settings } from "lucide-svelte";
+    import { Brush, Bot } from "lucide-svelte";
     import { Button } from "bits-ui";
 </script>
 
-<div class="h-10 flex flex-row items-center justify-center">
+<div class="h-14 flex flex-row items-center justify-center">
     <Button.Root
-        class=" text-dark  hover:bg-dark/5 border-none
-    h-full items-center justify-center px-[21px] text-[15px]
+        class="rounded-lg text-dark  hover:bg-dark/5 border-none
+    h-10 items-center justify-center px-[21px] text-[15px]
     font-semibold active:scale-[0.98] active:transition-all flex flex-col"
+        href="/design"
     >
         <Brush />
-        Unlimited
+        Design
     </Button.Root>
     <Button.Root
-        class=" text-dark  hover:bg-dark/5
-    h-full items-center justify-center px-[21px] text-[15px]
+        class="rounded-lg text-dark  hover:bg-dark/5 border-none
+    h-10 items-center justify-center px-[21px] text-[15px]
     font-semibold active:scale-[0.98] active:transition-all flex flex-col"
+        href="/control"
     >
-        <Shovel />
-        Unlimited
-    </Button.Root>
-    <Button.Root
-        class=" text-dark  hover:bg-dark/5
-    h-full items-center justify-center px-[21px] text-[15px]
-    font-semibold active:scale-[0.98] active:transition-all flex flex-col"
-    >
-        <Settings />
-        Unlimited
+        <Bot />
+        Control
     </Button.Root>
 </div>
 

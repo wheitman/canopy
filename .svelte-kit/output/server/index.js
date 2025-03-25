@@ -1,6 +1,5 @@
-import { n as noop, D as DEV } from "./chunks/index.js";
+import { n as noop, ag as BROWSER } from "./chunks/index.js";
 import { b as base, a as app_dir, s as safe_not_equal, c as assets, o as override, r as reset, p as public_env, d as safe_public_env, e as read_implementation, f as options, g as set_private_env, h as prerendering, i as set_public_env, j as get_hooks, k as set_safe_public_env, l as set_read_implementation } from "./chunks/internal.js";
-import { H as HttpError, S as SvelteKitError, t as text, j as json, R as Redirect, A as ActionFailure } from "./chunks/index2.js";
 import * as devalue from "devalue";
 import { m as make_trackable, d as disable_search, a as decode_params, n as normalize_path, r as resolve, b as decode_pathname, v as validate_layout_server_exports, c as validate_layout_exports, e as validate_page_server_exports, f as validate_page_exports, g as validate_server_exports } from "./chunks/exports.js";
 import "clsx";
@@ -55,6 +54,87 @@ function is_form_content_type(request) {
     "multipart/form-data",
     "text/plain"
   );
+}
+class HttpError {
+  /**
+   * @param {number} status
+   * @param {{message: string} extends App.Error ? (App.Error | string | undefined) : App.Error} body
+   */
+  constructor(status, body2) {
+    this.status = status;
+    if (typeof body2 === "string") {
+      this.body = { message: body2 };
+    } else if (body2) {
+      this.body = body2;
+    } else {
+      this.body = { message: `Error: ${status}` };
+    }
+  }
+  toString() {
+    return JSON.stringify(this.body);
+  }
+}
+class Redirect {
+  /**
+   * @param {300 | 301 | 302 | 303 | 304 | 305 | 306 | 307 | 308} status
+   * @param {string} location
+   */
+  constructor(status, location) {
+    this.status = status;
+    this.location = location;
+  }
+}
+class SvelteKitError extends Error {
+  /**
+   * @param {number} status
+   * @param {string} text
+   * @param {string} message
+   */
+  constructor(status, text2, message) {
+    super(message);
+    this.status = status;
+    this.text = text2;
+  }
+}
+class ActionFailure {
+  /**
+   * @param {number} status
+   * @param {T} data
+   */
+  constructor(status, data) {
+    this.status = status;
+    this.data = data;
+  }
+}
+function json(data, init2) {
+  const body2 = JSON.stringify(data);
+  const headers2 = new Headers(init2?.headers);
+  if (!headers2.has("content-length")) {
+    headers2.set("content-length", encoder$3.encode(body2).byteLength.toString());
+  }
+  if (!headers2.has("content-type")) {
+    headers2.set("content-type", "application/json");
+  }
+  return new Response(body2, {
+    ...init2,
+    headers: headers2
+  });
+}
+const encoder$3 = new TextEncoder();
+function text(body2, init2) {
+  const headers2 = new Headers(init2?.headers);
+  if (!headers2.has("content-length")) {
+    const encoded = encoder$3.encode(body2);
+    headers2.set("content-length", encoded.byteLength.toString());
+    return new Response(encoded, {
+      ...init2,
+      headers: headers2
+    });
+  }
+  return new Response(body2, {
+    ...init2,
+    headers: headers2
+  });
 }
 function coalesce_to_error(err) {
   return err instanceof Error || err && /** @type {any} */
@@ -2172,7 +2252,7 @@ async function render_page(event, page, options2, manifest, state, resolve_opts)
     state.prerender_default = should_prerender;
     const fetched = [];
     if (get_option(nodes, "ssr") === false && !(state.prerendering && should_prerender_data)) {
-      if (DEV && action_result && !event.request.headers.has("x-sveltekit-action")) ;
+      if (BROWSER && action_result && !event.request.headers.has("x-sveltekit-action")) ;
       return await render_response({
         branch: [],
         fetched,
@@ -2760,12 +2840,12 @@ async function respond(request, options2, manifest, state) {
         trailing_slash = "always";
       } else if (route.page) {
         const nodes = await load_page_nodes(route.page, manifest);
-        if (DEV) ;
+        if (BROWSER) ;
         trailing_slash = get_option(nodes, "trailingSlash");
       } else if (route.endpoint) {
         const node = await route.endpoint();
         trailing_slash = node.trailingSlash;
-        if (DEV) ;
+        if (BROWSER) ;
       }
       if (!is_data_request) {
         const normalized = normalize_path(url.pathname, trailing_slash ?? "never");

@@ -2,25 +2,25 @@
 	"version": 3,
 	"routes": [
 		{
-			"src": "/about",
-			"dest": "/about/"
+			"src": "/control",
+			"dest": "/control/"
 		},
 		{
-			"src": "/about/",
+			"src": "/control/",
 			"status": 308,
 			"headers": {
-				"Location": "/about"
+				"Location": "/control"
 			}
 		},
 		{
-			"src": "/contact",
-			"dest": "/contact/"
+			"src": "/design",
+			"dest": "/design/"
 		},
 		{
-			"src": "/contact/",
+			"src": "/design/",
 			"status": 308,
 			"headers": {
-				"Location": "/contact"
+				"Location": "/design"
 			}
 		},
 		{
@@ -41,11 +41,11 @@
 		"index.html": {
 			"path": ""
 		},
-		"about.html": {
-			"path": "about"
+		"control.html": {
+			"path": "control"
 		},
-		"contact.html": {
-			"path": "contact"
+		"design.html": {
+			"path": "design"
 		}
 	}
 }

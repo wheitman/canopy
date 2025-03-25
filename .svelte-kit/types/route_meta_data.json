@@ -4,6 +4,9 @@
 		"src/routes/+layout.ts",
 		"src/routes/+layout.ts"
 	],
+	"/control": [
+		"src/routes/+layout.ts"
+	],
 	"/design": [
 		"src/routes/+layout.ts"
 	]
