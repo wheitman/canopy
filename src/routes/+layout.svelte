@@ -20,7 +20,7 @@
 
 <style>
 	.layout {
-		height: 100vh;
+		height: 100dvh;
 		width: 100vw;
 		/* max-inline-size: 1440px; */
 		/* display: grid; */
@@ -34,7 +34,7 @@
 	}
 	main {
 		padding-block: var(--size-9);
-		height: calc(100vh - 70px);
+		height: calc(100dvh - 70px);
 		width: 100vw;
 	}
 </style>
