@@ -1,29 +1,5 @@
-import { n as noop, W as getContext, X as escape_html, Y as store_get, Z as unsubscribe_stores, V as pop, S as push } from "../../chunks/index.js";
-import "clsx";
-import "../../chunks/exports.js";
-function get(key, parse = JSON.parse) {
-  try {
-    return parse(sessionStorage[key]);
-  } catch {
-  }
-}
-const SNAPSHOT_KEY = "sveltekit:snapshot";
-const SCROLL_KEY = "sveltekit:scroll";
-const is_legacy = noop.toString().includes("$$") || /function \w+\(\) \{\}/.test(noop.toString());
-if (is_legacy) {
-  ({
-    data: {},
-    form: null,
-    error: null,
-    params: {},
-    route: { id: null },
-    state: {},
-    status: -1,
-    url: new URL("https://example.com")
-  });
-}
-get(SCROLL_KEY) ?? {};
-get(SNAPSHOT_KEY) ?? {};
+import { g as getContext, e as escape_html, s as store_get, u as unsubscribe_stores, p as pop, a as push } from "../../chunks/index.js";
+import "../../chunks/client.js";
 const getStores = () => {
   const stores = getContext("__svelte__");
   return {

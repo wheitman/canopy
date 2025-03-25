@@ -4,17 +4,10 @@
 		"src/routes/+layout.ts",
 		"src/routes/+layout.ts"
 	],
-	"/about": [
+	"/control": [
 		"src/routes/+layout.ts"
 	],
-	"/api/posts": [
-		"src/routes/api/posts/+server.ts"
-	],
-	"/contact": [
-		"src/routes/+layout.ts"
-	],
-	"/[slug]": [
-		"src/routes/[slug]/+page.ts",
+	"/design": [
 		"src/routes/+layout.ts"
 	]
 }

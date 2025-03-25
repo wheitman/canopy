@@ -17,6 +17,7 @@
 		"@sveltejs/vite-plugin-svelte": "^4.0.0",
 		"@tailwindcss/typography": "^0.5.16",
 		"@types/eslint": "^9.6.1",
+		"@types/mapbox__mapbox-gl-draw": "^1.4.8",
 		"@types/p5": "^1.7.6",
 		"autoprefixer": "^10.4.20",
 		"eslint": "^9.14.0",
@@ -39,8 +40,10 @@
 	"dependencies": {
 		"@fontsource/atkinson-hyperlegible": "^5.1.0",
 		"@fontsource/jetbrains-mono": "^5.1.1",
+		"@mapbox/mapbox-gl-draw": "^1.5.0",
 		"bits-ui": "^1.1.0",
 		"lucide-svelte": "^0.456.0",
+		"maplibre-gl": "^5.2.0",
 		"p5": "^1.11.3",
 		"rehype-katex": "^7.0.1",
 		"rehype-katex-svelte": "^1.2.0",
@@ -48,6 +51,7 @@
 		"rehype-slug": "^6.0.0",
 		"remark-toc": "^9.0.0",
 		"shiki": "^1.22.2",
+		"svelte-maplibre": "^1.0.0",
 		"tailwind-merge": "^3.0.1"
 	}
 }

@@ -1,5 +1,5 @@
 import { clsx as clsx$1 } from "clsx";
-const DEV = false;
+const BROWSER = false;
 var is_array = Array.isArray;
 var index_of = Array.prototype.indexOf;
 var array_from = Array.from;
@@ -7,6 +7,9 @@ var define_property = Object.defineProperty;
 var get_descriptor = Object.getOwnPropertyDescriptor;
 const noop = () => {
 };
+function run(fn) {
+  return fn();
+}
 function fallback(value, fallback2, lazy = false) {
   return value === void 0 ? lazy ? (
     /** @type {() => V} */
@@ -62,6 +65,7 @@ const HYDRATION_END = "]";
 const HYDRATION_ERROR = {};
 const ELEMENT_IS_NAMESPACED = 1;
 const ELEMENT_PRESERVE_ATTRIBUTE_CASE = 1 << 1;
+const UNINITIALIZED = Symbol();
 function lifecycle_outside_component(name) {
   {
     throw new Error(`https://svelte.dev/e/lifecycle_outside_component`);
@@ -671,8 +675,8 @@ function update_effect(effect2) {
     effect2.wv = write_version;
     var deps = effect2.deps;
     var dep;
-    if (DEV && tracing_mode_flag && (effect2.f & DIRTY) !== 0 && deps !== null) ;
-    if (DEV) ;
+    if (BROWSER && tracing_mode_flag && (effect2.f & DIRTY) !== 0 && deps !== null) ;
+    if (BROWSER) ;
   } catch (error) {
     handle_error(error, effect2, previous_effect, previous_component_context || effect2.ctx);
   } finally {
@@ -839,7 +843,7 @@ function flush_sync(fn) {
     }
     flush_count = 0;
     last_scheduled_effect = null;
-    if (DEV) ;
+    if (BROWSER) ;
     return result;
   } finally {
     scheduler_mode = previous_scheduler_mode;
@@ -1002,14 +1006,14 @@ function clsx(value) {
     return value ?? "";
   }
 }
-function subscribe_to_store(store, run, invalidate) {
+function subscribe_to_store(store, run2, invalidate) {
   if (store == null) {
-    run(void 0);
+    run2(void 0);
     return noop;
   }
   const unsub = untrack(
     () => store.subscribe(
-      run,
+      run2,
       // @ts-expect-error
       invalidate
     )
@@ -1028,6 +1032,9 @@ function getContext(key) {
 function setContext(key, context) {
   get_or_init_context_map().set(key, context);
   return context;
+}
+function hasContext(key) {
+  return get_or_init_context_map().has(key);
 }
 function get_or_init_context_map(name) {
   if (current_component === null) {
@@ -1064,6 +1071,22 @@ const BLOCK_OPEN = `<!--${HYDRATION_START}-->`;
 const BLOCK_CLOSE = `<!--${HYDRATION_END}-->`;
 const EMPTY_COMMENT = `<!---->`;
 const INVALID_ATTR_NAME_CHAR_REGEX = /[\s'">/=\u{FDD0}-\u{FDEF}\u{FFFE}\u{FFFF}\u{1FFFE}\u{1FFFF}\u{2FFFE}\u{2FFFF}\u{3FFFE}\u{3FFFF}\u{4FFFE}\u{4FFFF}\u{5FFFE}\u{5FFFF}\u{6FFFE}\u{6FFFF}\u{7FFFE}\u{7FFFF}\u{8FFFE}\u{8FFFF}\u{9FFFE}\u{9FFFF}\u{AFFFE}\u{AFFFF}\u{BFFFE}\u{BFFFF}\u{CFFFE}\u{CFFFF}\u{DFFFE}\u{DFFFF}\u{EFFFE}\u{EFFFF}\u{FFFFE}\u{FFFFF}\u{10FFFE}\u{10FFFF}]/u;
+function copy_payload({ out, css, head: head2, uid }) {
+  return {
+    out,
+    css: new Set(css),
+    head: {
+      title: head2.title,
+      out: head2.out
+    },
+    uid
+  };
+}
+function assign_payload(p1, p2) {
+  p1.out = p2.out;
+  p1.head = p2.head;
+  p1.uid = p2.uid;
+}
 function element(payload, tag, attributes_fn = noop, children_fn = noop) {
   payload.out += "<!---->";
   if (tag) {
@@ -1158,6 +1181,9 @@ function spread_props(props) {
   }
   return merged_props;
 }
+function stringify(value) {
+  return typeof value === "string" ? value : value == null ? "" : value + "";
+}
 function store_get(store_values, store_name, store) {
   if (store_name in store_values && store_values[store_name][0] === store) {
     return store_values[store_name][2];
@@ -1215,69 +1241,88 @@ function ensure_array_like(array_like_or_iterator) {
   }
   return [];
 }
+function once(get_value) {
+  let value = (
+    /** @type {V} */
+    UNINITIALIZED
+  );
+  return () => {
+    if (value === UNINITIALIZED) {
+      value = get_value();
+    }
+    return value;
+  };
+}
 export {
-  rest_props as $,
-  array_from as A,
-  BLOCK_EFFECT as B,
+  hydration_failed as $,
+  DERIVED as A,
+  schedule_effect as B,
   CLEAN as C,
-  DEV as D,
-  component_root as E,
-  is_passive_event as F,
-  create_text as G,
-  HYDRATION_ERROR as H,
-  branch as I,
-  push$1 as J,
-  pop$1 as K,
-  component_context as L,
+  DIRTY as D,
+  active_reaction as E,
+  untracking as F,
+  is_runes as G,
+  BLOCK_EFFECT as H,
+  derived_sources as I,
+  state_unsafe_mutation as J,
+  active_effect as K,
+  BRANCH_EFFECT as L,
   MAYBE_DIRTY as M,
-  get as N,
-  LEGACY_PROPS as O,
-  flush_sync as P,
-  render as Q,
+  untracked_writes as N,
+  set_untracked_writes as O,
+  HYDRATION_ERROR as P,
+  get_next_sibling as Q,
   ROOT_EFFECT as R,
-  push as S,
-  setContext as T,
+  define_property as S,
+  set_active_reaction as T,
   UNOWNED as U,
-  pop as V,
-  getContext as W,
-  escape_html as X,
-  store_get as Y,
-  unsubscribe_stores as Z,
-  head as _,
-  DIRTY as a,
-  fallback as a0,
-  ensure_array_like as a1,
-  spread_attributes as a2,
-  clsx as a3,
-  element as a4,
-  slot as a5,
-  bind_props as a6,
-  sanitize_props as a7,
-  spread_props as a8,
-  attr as a9,
-  DERIVED as b,
-  schedule_effect as c,
-  active_reaction as d,
-  is_runes as e,
-  derived_sources as f,
-  state_unsafe_mutation as g,
-  active_effect as h,
-  increment_write_version as i,
-  BRANCH_EFFECT as j,
-  untracked_writes as k,
-  set_untracked_writes as l,
-  get_next_sibling as m,
+  set_active_effect as V,
+  is_array as W,
+  init_operations as X,
+  get_first_child as Y,
+  HYDRATION_START as Z,
+  HYDRATION_END as _,
+  push as a,
+  clear_text_content as a0,
+  array_from as a1,
+  component_root as a2,
+  is_passive_event as a3,
+  create_text as a4,
+  branch as a5,
+  push$1 as a6,
+  pop$1 as a7,
+  component_context as a8,
+  get as a9,
+  LEGACY_PROPS as aa,
+  flush_sync as ab,
+  render as ac,
+  hasContext as ad,
+  once as ae,
+  run as af,
+  BROWSER as ag,
+  ensure_array_like as b,
+  spread_attributes as c,
+  clsx as d,
+  escape_html as e,
+  fallback as f,
+  getContext as g,
+  head as h,
+  element as i,
+  slot as j,
+  bind_props as k,
+  sanitize_props as l,
+  spread_props as m,
   noop as n,
-  define_property as o,
-  set_active_reaction as p,
-  set_active_effect as q,
-  is_array as r,
-  set_signal_status as s,
-  init_operations as t,
-  untracking as u,
-  get_first_child as v,
-  HYDRATION_START as w,
-  HYDRATION_END as x,
-  hydration_failed as y,
-  clear_text_content as z
+  current_component as o,
+  pop as p,
+  setContext as q,
+  rest_props as r,
+  store_get as s,
+  attr as t,
+  unsubscribe_stores as u,
+  stringify as v,
+  copy_payload as w,
+  assign_payload as x,
+  increment_write_version as y,
+  set_signal_status as z
 };
