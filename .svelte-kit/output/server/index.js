@@ -1,4 +1,4 @@
-import { n as noop, ag as BROWSER } from "./chunks/index.js";
+import { n as noop, ah as BROWSER } from "./chunks/index.js";
 import { b as base, a as app_dir, s as safe_not_equal, c as assets, o as override, r as reset, p as public_env, d as safe_public_env, e as read_implementation, f as options, g as set_private_env, h as prerendering, i as set_public_env, j as get_hooks, k as set_safe_public_env, l as set_read_implementation } from "./chunks/internal.js";
 import * as devalue from "devalue";
 import { m as make_trackable, d as disable_search, a as decode_params, n as normalize_path, r as resolve, b as decode_pathname, v as validate_layout_server_exports, c as validate_layout_exports, e as validate_page_server_exports, f as validate_page_exports, g as validate_server_exports } from "./chunks/exports.js";

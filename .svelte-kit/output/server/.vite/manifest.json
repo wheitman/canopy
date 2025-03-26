@@ -15,6 +15,13 @@
       "_app/immutable/assets/Popup.DxSqCqfj.css"
     ]
   },
+  "_bot.js": {
+    "file": "chunks/bot.js",
+    "name": "bot",
+    "imports": [
+      "_index.js"
+    ]
+  },
   "_client.js": {
     "file": "chunks/client.js",
     "name": "client",
@@ -120,10 +127,11 @@
     "src": "src/routes/+layout.svelte",
     "isEntry": true,
     "imports": [
-      "_index.js"
+      "_index.js",
+      "_bot.js"
     ],
     "css": [
-      "_app/immutable/assets/_layout.CLt4Dmy_.css"
+      "_app/immutable/assets/_layout.BySCPPoZ.css"
     ],
     "assets": [
       "_app/immutable/assets/atkinson-hyperlegible-latin-ext-400-normal.Dwzd0TKx.woff2",
@@ -183,7 +191,8 @@
     "isEntry": true,
     "imports": [
       "_index.js",
-      "_Popup.svelte_svelte_type_style_lang.js"
+      "_Popup.svelte_svelte_type_style_lang.js",
+      "_bot.js"
     ],
     "css": [
       "_app/immutable/assets/_page.Ba48qkd4.css"

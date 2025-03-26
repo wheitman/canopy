@@ -1184,6 +1184,19 @@ function spread_props(props) {
 function stringify(value) {
   return typeof value === "string" ? value : value == null ? "" : value + "";
 }
+function style_object_to_string(style_object) {
+  return Object.keys(style_object).filter(
+    /** @param {any} key */
+    (key) => style_object[key] != null && style_object[key] !== ""
+  ).map(
+    /** @param {any} key */
+    (key) => `${key}: ${escape_html(style_object[key], true)};`
+  ).join(" ");
+}
+function add_styles(style_object) {
+  const styles = style_object_to_string(style_object);
+  return styles ? ` style="${styles}"` : "";
+}
 function store_get(store_values, store_name, store) {
   if (store_name in store_values && store_values[store_name][0] === store) {
     return store_values[store_name][2];
@@ -1254,52 +1267,53 @@ function once(get_value) {
   };
 }
 export {
-  hydration_failed as $,
-  DERIVED as A,
-  schedule_effect as B,
+  branch as $,
+  state_unsafe_mutation as A,
+  BLOCK_EFFECT as B,
   CLEAN as C,
   DIRTY as D,
-  active_reaction as E,
-  untracking as F,
-  is_runes as G,
-  BLOCK_EFFECT as H,
-  derived_sources as I,
-  state_unsafe_mutation as J,
-  active_effect as K,
-  BRANCH_EFFECT as L,
+  active_effect as E,
+  BRANCH_EFFECT as F,
+  untracked_writes as G,
+  set_untracked_writes as H,
+  HYDRATION_ERROR as I,
+  get_next_sibling as J,
+  define_property as K,
+  set_active_reaction as L,
   MAYBE_DIRTY as M,
-  untracked_writes as N,
-  set_untracked_writes as O,
-  HYDRATION_ERROR as P,
-  get_next_sibling as Q,
+  set_active_effect as N,
+  is_array as O,
+  init_operations as P,
+  get_first_child as Q,
   ROOT_EFFECT as R,
-  define_property as S,
-  set_active_reaction as T,
+  HYDRATION_START as S,
+  HYDRATION_END as T,
   UNOWNED as U,
-  set_active_effect as V,
-  is_array as W,
-  init_operations as X,
-  get_first_child as Y,
-  HYDRATION_START as Z,
-  HYDRATION_END as _,
+  hydration_failed as V,
+  clear_text_content as W,
+  array_from as X,
+  component_root as Y,
+  is_passive_event as Z,
+  create_text as _,
   push as a,
-  clear_text_content as a0,
-  array_from as a1,
-  component_root as a2,
-  is_passive_event as a3,
-  create_text as a4,
-  branch as a5,
-  push$1 as a6,
-  pop$1 as a7,
-  component_context as a8,
-  get as a9,
-  LEGACY_PROPS as aa,
-  flush_sync as ab,
-  render as ac,
-  hasContext as ad,
-  once as ae,
-  run as af,
-  BROWSER as ag,
+  push$1 as a0,
+  pop$1 as a1,
+  component_context as a2,
+  get as a3,
+  LEGACY_PROPS as a4,
+  flush_sync as a5,
+  render as a6,
+  setContext as a7,
+  current_component as a8,
+  attr as a9,
+  stringify as aa,
+  add_styles as ab,
+  copy_payload as ac,
+  assign_payload as ad,
+  hasContext as ae,
+  once as af,
+  run as ag,
+  BROWSER as ah,
   ensure_array_like as b,
   spread_attributes as c,
   clsx as d,
@@ -1313,16 +1327,16 @@ export {
   sanitize_props as l,
   spread_props as m,
   noop as n,
-  current_component as o,
+  increment_write_version as o,
   pop as p,
-  setContext as q,
+  set_signal_status as q,
   rest_props as r,
   store_get as s,
-  attr as t,
+  DERIVED as t,
   unsubscribe_stores as u,
-  stringify as v,
-  copy_payload as w,
-  assign_payload as x,
-  increment_write_version as y,
-  set_signal_status as z
+  schedule_effect as v,
+  active_reaction as w,
+  untracking as x,
+  is_runes as y,
+  derived_sources as z
 };

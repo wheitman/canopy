@@ -34,7 +34,6 @@ declare module '$env/static/private' {
 	export const SHLVL: string;
 	export const LD_LIBRARY_PATH: string;
 	export const npm_config_noproxy: string;
-	export const MOTD_SHOWN: string;
 	export const HOME: string;
 	export const CONDA_SHLVL: string;
 	export const TERM_PROGRAM_VERSION: string;
@@ -70,7 +69,6 @@ declare module '$env/static/private' {
 	export const ROS_LOCALHOST_ONLY: string;
 	export const npm_config_node_gyp: string;
 	export const PATH: string;
-	export const WSL_PAC_URL: string;
 	export const NODE: string;
 	export const npm_package_name: string;
 	export const XDG_RUNTIME_DIR: string;
@@ -142,7 +140,6 @@ declare module '$env/dynamic/private' {
 		SHLVL: string;
 		LD_LIBRARY_PATH: string;
 		npm_config_noproxy: string;
-		MOTD_SHOWN: string;
 		HOME: string;
 		CONDA_SHLVL: string;
 		TERM_PROGRAM_VERSION: string;
@@ -178,7 +175,6 @@ declare module '$env/dynamic/private' {
 		ROS_LOCALHOST_ONLY: string;
 		npm_config_node_gyp: string;
 		PATH: string;
-		WSL_PAC_URL: string;
 		NODE: string;
 		npm_package_name: string;
 		XDG_RUNTIME_DIR: string;
